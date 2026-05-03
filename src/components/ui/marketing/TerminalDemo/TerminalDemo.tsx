@@ -25,25 +25,19 @@ interface ScriptLine {
 // Astro Rocket setup flow: clone → install → dev
 const script: ScriptLine[] = [
   // Step 1: clone
-  { text: '$ git clone https://github.com/hansmartens68/Astro-Rocket.git', delay: 1200, type: 'command' },
+  { text: '$ npm install', delay: 1200, type: 'command' },
   { text: '', delay: 200, type: 'command' },
-  { text: 'Cloning into \'Astro-Rocket\'...', delay: 300, type: 'prompt-hint' },
-  { text: '✔  Repository cloned', delay: 600, type: 'success' },
+  { text: 'Installation des dépendances...', delay: 300, type: 'prompt-hint' },
+  { text: '✔  Dépendances installées', delay: 600, type: 'success' },
   { text: '', delay: 200, type: 'prompt-label' },
 
   // Step 2: install
-  { text: '$ cd Astro-Rocket && pnpm install', delay: 600, type: 'command' },
+  { text: '$ npm run dev', delay: 600, type: 'command' },
   { text: '', delay: 200, type: 'command' },
-  { text: '◐  Resolving dependencies...', delay: 400, type: 'spinner' },
-  { text: '✔  Dependencies installed', delay: 700, type: 'success' },
+  { text: '◐  Démarrage du serveur...', delay: 400, type: 'spinner' },
+  { text: '✔  Serveur démarré sur localhost:4321', delay: 700, type: 'success' },
   { text: '', delay: 200, type: 'prompt-label' },
 
-  // Step 3: dev
-  { text: '$ pnpm dev', delay: 600, type: 'command' },
-  { text: '', delay: 200, type: 'command' },
-  { text: '◐  Starting Astro dev server...', delay: 400, type: 'spinner' },
-  { text: '✔  Astro dev server started', delay: 600, type: 'success' },
-  { text: '│', delay: 100, type: 'prompt-label' },
 
   // Next steps note
   { text: '◇  Ready ──────────────────────────╮', delay: 300, type: 'note-header' },

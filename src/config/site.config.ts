@@ -58,29 +58,29 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Astro Rocket',
+  name: 'Developer Web',
   description:
-    'Astro Rocket — A production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.',
-  url: SITE_URL || 'https://astrorocket.dev',
+    'Busy building premium websites for businesses. We combine technical discipline with creative excellence. We don\'t just "make websites"—we engineer digital tools that solve business problems.',
+  url: SITE_URL || 'https://developer-web.com',
   ogImage: '/og-default.svg',
-  author: 'Hans Martens',
-  email: 'hello@hansmartens.dev',
+  author: 'Developer Web',
+  email: 'contact@developer-web.com',
   address: {
     street: '',
-    city: 'Veghel',
+    city: 'Marrakech',
     state: '',
     zip: '',
-    country: 'the Netherlands',
+    country: 'Maroc',
   },
   socialLinks: [
-    'https://github.com/hansmartens68/Astro-Rocket',
-    'https://x.com/hansmartens_dev',
-    'https://www.linkedin.com',
-    'https://bsky.app/profile/hansmartens-online.bsky.social',
+    'https://github.com/developer_webgrowth',
+    'https://x.com/developer_webgrowth',
+    'https://www.linkedin.com/in/developer_webgrowth',
+    'https://instagram.com/developer_webgrowth',
   ],
   twitter: {
-    site: 'https://x.com/hansmartens_dev',
-    creator: '@hansmartens_dev',
+    site: 'https://x.com/developer_webgrowth',
+    creator: '@developer_webgrowth',
   },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
@@ -90,7 +90,7 @@ const siteConfig: SiteConfig = {
   blogImageOverlay: true,
   branding: {
     logo: {
-      alt: 'Astro Rocket',
+      alt: 'Developer Web',
       imageUrl: '/favicon.svg',
     },
     favicon: {

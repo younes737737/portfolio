@@ -18,11 +18,11 @@ export const POST: APIRoute = async ({ request }) => {
     const formData = await request.formData();
 
     const data = {
-      name: formData.get('name')?.toString() || '',
-      email: formData.get('email')?.toString() || '',
-      subject: formData.get('subject')?.toString() || '',
-      message: formData.get('message')?.toString() || '',
-      honeypot: formData.get('honeypot')?.toString() || '',
+      name: formData.get('name') as string || '',
+      email: formData.get('email') as string || '',
+      subject: formData.get('subject') as string || '',
+      message: formData.get('message') as string || '',
+      honeypot: formData.get('honeypot') as string || '',
     };
 
     // Validate
@@ -55,7 +55,6 @@ export const POST: APIRoute = async ({ request }) => {
     // Send email via Resend
     const apiKey = import.meta.env.RESEND_API_KEY;
     if (!apiKey) {
-      console.error('RESEND_API_KEY is not set');
       return new Response(
         JSON.stringify({ success: false, errors: { form: ['Email service is not configured'] } }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
@@ -81,12 +80,11 @@ export const POST: APIRoute = async ({ request }) => {
         <p><strong>Name:</strong> ${result.data.name}</p>
         <p><strong>Email:</strong> ${result.data.email}</p>
         <p><strong>Message:</strong></p>
-        <p>${result.data.message.replace(/\n/g, '<br>')}</p>
+        <p>${result.data.message.replaceAll('\n', '<br>')}</p>
       `,
     });
 
     if (error) {
-      console.error('Resend error:', error);
       return new Response(
         JSON.stringify({ success: false, errors: { form: [error.message || 'Failed to send email'] } }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
@@ -98,7 +96,8 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Contact form error:', error);
+    // Log error for debugging without exposing to client
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 
     return new Response(
       JSON.stringify({ success: false, errors: { form: ['An unexpected error occurred'] } }),

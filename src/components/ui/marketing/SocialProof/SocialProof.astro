@@ -41,7 +41,7 @@ const displayAvatars = avatars || Array.from({ length: avatarCount }, () => null
       src ? (
         <img
           src={src}
-          alt=""
+          alt={`Contributeur ${i + 1}`}
           class={cn(
             'rounded-full border-2 object-cover ring-2 ring-background',
             sizes[size]

@@ -50,28 +50,33 @@ const channels = [
     </h1>
 
     <p slot="description">
-      Use the form below or reach out on any of these channels. I'll get back to you within 1 business day.
+      Prenez rendez-vous directement avec Calendly ou contactez-moi par les autres canaux. Je vous répondrai dans les plus brefs délais.
     </p>
   </Hero>
 
   <!-- Contact Section -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-5xl px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-stretch">
+    <div class="mx-auto max-w-4xl px-6">
+      <div class="flex flex-col items-center gap-12">
 
-        <!-- Left column: contact form -->
-        <div class="lg:col-span-3 h-full" data-reveal="right">
-          <Card padding="lg" class="h-full flex flex-col justify-center">
-            <h2 class="font-display text-xl font-bold text-foreground mb-6">Send a message</h2>
-            <ContactForm />
+        <!-- Calendly Widget - Centered -->
+        <div class="w-full max-w-3xl" data-reveal="right">
+          <Card padding="lg" class="w-full flex flex-col justify-center">
+            <h2 class="font-display text-xl font-bold text-foreground mb-6 text-center">Prendre rendez-vous</h2>
+            <div class="w-full">
+              <!-- Calendly inline widget begin -->
+              <div class="calendly-inline-widget w-full" data-url="https://calendly.com/youneselanbri12/we-re-here-to-answer-your-questions?hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+              <!-- Calendly inline widget end -->
+            </div>
           </Card>
         </div>
 
-        <!-- Right column: contact channels -->
-        <div class="lg:col-span-2 space-y-4" data-reveal="left" data-reveal-delay="1">
-          <div>
-            <h2 class="font-display text-lg font-bold text-foreground mb-1">Other channels</h2>
-            <p class="text-sm text-foreground-muted">Prefer a direct channel? Pick whichever works best.</p>
+        <!-- Contact channels - Below -->
+        <div class="w-full max-w-2xl" data-reveal="left" data-reveal-delay="1">
+          <div class="text-center mb-6">
+            <h2 class="font-display text-lg font-bold text-foreground mb-1">Autres canaux de contact</h2>
+            <p class="text-sm text-foreground-muted">Préférez un contact direct ? Choisissez le canal qui vous convient.</p>
           </div>
 
           <!-- Channel list -->

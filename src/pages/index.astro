@@ -23,33 +23,33 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 ---
 
 <LandingLayout
-  title="Astro Rocket — Astro 6 starter theme"
-  description="A production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on."
+  title="Developer Web — Engineering Digital Excellence"
+  description="Busy building premium websites for businesses. We combine technical discipline with creative excellence to engineer digital tools that solve business problems."
   image="/og-default.svg"
-  includePersonSchema={true}
+  includeOrgSchema={true}
   includeProfessionalServiceSchema={true}
 >
   <!-- Hero -->
   <Hero layout="centered" size="xl" class="hero-dark-gradient" showScrollIndicator>
-    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">Available for new projects</Badge>
+    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">Building Premium Solutions</Badge>
 
     <h1 slot="title">
-      <span class="text-brand-500 dark:text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Web Designer</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Developer</span>
+      <span class="text-brand-500 dark:text-foreground [-webkit-text-fill-color:currentColor]">Developer Web —</span><br />
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Digital Excellence</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Business Solutions</span>
     </h1>
 
     <p slot="description">
-      Astro 6 starter with 12 beautiful themes, 57+ components, dark mode and a fast, modern foundation to build anything on.
+      We don't just "make websites"—we engineer digital tools that solve business problems. Premium solutions for modern businesses.
     </p>
 
    <Fragment slot="actions">
-      <Button size="lg" href="https://github.com/hansmartens68/Astro-Rocket">
-        Get it on GitHub
+      <Button size="lg" href="/projects">
+        Our Premium Work
         <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button size="lg" variant="outline" href="/blog/astro-rocket-getting-started">
-        <Icon name="rocket" size="sm" />
-        Get started
+      <Button size="lg" variant="outline" href="/contact">
+        <Icon name="mail" size="sm" />
+        Start Your Project
         <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
@@ -168,7 +168,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       </div>
     </div>
   </section>
-
+<section>
+  <!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/youneselanbri12/we-re-here-to-answer-your-questions?hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+</section>
   <!-- Portfolio -->
   <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">

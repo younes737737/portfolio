@@ -4,8 +4,8 @@ import outfitFont from '@fontsource-variable/outfit/files/outfit-latin-wght-norm
 import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
 import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
-import Analytics from '@/components/layout/Analytics.astro';
-import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
+// import Analytics from '@/components/layout/Analytics.astro';
+// import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
 import type { Thing, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
@@ -92,8 +92,8 @@ schemas.push(...extraSchemas);
     <!-- JSON-LD Structured Data -->
     <JsonLd schema={schemas} />
 
-    <!-- Analytics (loads if PUBLIC_GA_MEASUREMENT_ID or PUBLIC_GTM_ID is set) -->
-    <Analytics />
+    <!-- Analytics désactivé pour la performance -->
+    <!-- <Analytics /> -->
 
     <!-- Client-side view transitions are intentionally disabled. They composed
          poorly with the theme's CSS keyframe animations (hero slide-up,
@@ -204,7 +204,8 @@ schemas.push(...extraSchemas);
 
     <slot name="footer" />
 
-    <ConsentBanner />
+    <!-- ConsentBanner désactivé pour la performance -->
+    <!-- <ConsentBanner /> -->
 
     <!-- Back to top button -->
     <button
