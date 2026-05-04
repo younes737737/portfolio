@@ -4,15 +4,11 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
-import netlify from '@astrojs/netlify';
-
 const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
 
 export default defineConfig({
   output: 'static',
-  adapter: isNetlify ? netlify() : vercel(),
-  site: process.env.SITE_URL || 'https://example.com',
+  site: process.env.SITE_URL || 'https:/developer-web.com',
 
   devToolbar: {
     enabled: false,
@@ -55,22 +51,6 @@ export default defineConfig({
 
   security: {
     checkOrigin: true,
-    csp: {
-      directives: {
-        'script-src': ["'self'", "'unsafe-inline'", "https://assets.calendly.com"],
-        'style-src': ["'self'", "'unsafe-inline'", "https://assets.calendly.com"],
-        'img-src': ["'self'", "data:", "https:", "https://assets.calendly.com"],
-        'font-src': ["'self'", "data:", "https://assets.calendly.com"],
-        'connect-src': ["'self'", "https://api.calendly.com"],
-        'media-src': ["'self'"],
-        'object-src': ["'none'"],
-        'base-uri': ["'self'"],
-        'form-action': ["'self'"],
-        'frame-ancestors': ["'none'"],
-        'default-src': ["'self'"],
-        'child-src': ["https://calendly.com"],
-      },
-    },
   },
 
   markdown: {

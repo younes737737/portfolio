@@ -5,21 +5,20 @@ import { glob } from 'astro/loaders';
 // Blog collection with Content Layer API
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string().max(100),
-      description: z.string().max(200),
-      publishedAt: z.coerce.date(),
-      updatedAt: z.coerce.date().optional(),
-      author: z.string().default('Team'),
-      image: image().optional(),
-      imageAlt: z.string().optional(),
-      tags: z.array(z.string()).default([]),
-      svgSlug: z.string().optional(),
-      draft: z.boolean().default(false),
-      featured: z.boolean().default(false),
-      locale: z.enum(['en', 'es', 'fr']).default('en'),
-    }),
+  schema: z.object({
+    title: z.string().max(100),
+    description: z.string().max(200),
+    publishedAt: z.coerce.date(),
+    updatedAt: z.coerce.date().optional(),
+    author: z.string().default('Team'),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    svgSlug: z.string().optional(),
+    draft: z.boolean().default(false),
+    featured: z.boolean().default(false),
+    locale: z.enum(['en', 'es', 'fr']).default('en'),
+  }),
 });
 
 // Pages collection for static pages

@@ -1,9 +1,9 @@
 {
-  "name": "portfolio-developer-web",
+  "name": "developer-web",
   "version": "1.0.0",
-  "description": "Portfolio professionnel de développeur web freelance avec Astro 6 et Tailwind CSS v4",
+  "description": "Professionnel web developer freelance",
   "type": "module",
-  "author": "Développeur Web Freelance",
+  "author": "developer-web",
   "license": "MIT",
   "keywords": [
     "astro",
@@ -40,10 +40,8 @@
   },
   "dependencies": {
     "@astrojs/mdx": "5.0.0",
-    "@astrojs/netlify": "^6.4.1",
     "@astrojs/react": "5.0.0",
     "@astrojs/sitemap": "^3.7.1",
-    "@astrojs/vercel": "^8.0.4",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
     "@fontsource-variable/outfit": "^5.2.8",

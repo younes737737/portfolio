@@ -13,142 +13,177 @@ import TypingEffect from '@/components/ui/TypingEffect.astro';
 import TechStack from '@/components/landing/TechStack.astro';
 ---
 <PageLayout
-  title="About Astro Rocket — Web Designer & Developer | Veghel"
-  description="Designer & developer — Crafting modern web experiences shaped by clean design, solid structure, and attention to detail."
+  title="About Developer Web — Web Developer | Morocco"
+  description="Freelance web developer based in Morocco — building fast, modern websites with React, Laravel, and Astro for clients locally and internationally."
 >
   <Hero layout="centered" size="sm">
-    <Badge slot="badge" variant="brand" pill>
-      <Icon name="user" size="sm" />
-      About me
-    </Badge>
-    <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
-        <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "Claude Code User", "UI / UX Enthusiast", "Blogger", "Coffee lover"]} />
-      </span>
-    </h1>
+  <Badge slot="badge" variant="brand" pill>
+    <Icon name="user" size="sm" />
+    About me
+  </Badge>
+  <h1 slot="title" >
+    <span class="text-foreground [-webkit-text-fill-color:currentColor]">Hire Developer Web  </span><br />
+  </h1>
 
-    <p slot="description">
-      I care about both sides of the craft — how a site looks and how it
-      performs. Here's a bit more about how I think and work.
-    </p>
-  </Hero>
-  <!-- What's possible now -->
+
+</Hero>
+
+  <!-- Results: Numbers That Kill Objections -->
   <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Results</Badge>
+          <h2 class="font-display text-4xl font-bold text-foreground">
+            Delivering measurable outcomes
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          Every project is held to standards that prioritise speed, quality, and reliability — from the first line of code to the final launch.
+        </p>
+      </div>
+      <div class="grid gap-8 md:grid-cols-4">
+        <Card variant="elevated" padding="lg" class="text-center" data-reveal>
+          <p class="text-4xl md:text-5xl font-bold text-brand-500 mb-2">10+</p>
+          <p class="text-sm text-foreground-muted leading-relaxed">
+            projects delivered across landing pages, corporate sites, and web applications
+          </p>
+        </Card>
+        <Card variant="elevated" padding="lg" class="text-center" data-reveal data-reveal-delay="1">
+          <p class="text-4xl md:text-5xl font-bold text-brand-500 mb-2">2–3</p>
+          <p class="text-sm text-foreground-muted leading-relaxed">
+            Agile Model - Iterative development. Enabling you to respond to change.
+          </p>
+        </Card>
+        <Card variant="elevated" padding="lg" class="text-center" data-reveal data-reveal-delay="2">
+          <p class="text-4xl md:text-5xl font-bold text-brand-500 mb-2">100%</p>
+          <p class="text-sm text-foreground-muted leading-relaxed">
+            direct communication — no account managers, no handoffs, no middlemen
+          </p>
+        </Card>
+        <Card variant="elevated" padding="lg" class="text-center" data-reveal data-reveal-delay="3">
+          <p class="text-4xl md:text-5xl font-bold text-brand-500 mb-2">3×</p>
+          <p class="text-sm text-foreground-muted leading-relaxed">
+            Plan together. Build together. Achieve success together.
+          </p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's possible now -->
+  <section class="py-[var(--space-section-md)]">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2">
         <!-- Left: text -->
         <div class="flex flex-col gap-4" data-reveal="right">
           <div class="flex flex-col gap-6">
-            <Badge variant="brand" pill class="self-start">The partnership</Badge>
+            <Badge variant="brand" pill class="self-start">Who I am</Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Meet the team:<br /> Astro Rocket & Claude
+              A solo developer<br /> who gets things done
             </h2>
           </div>
           <p class="text-lg text-foreground-muted leading-relaxed">
-           I'm a web designer and developer with 16 years of hands‑on experience. Today I work alongside <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors">Claude</a> — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
+            I'm a freelance web developer based in Morocco. I build fast, modern websites and web apps with <strong>React</strong>, <strong>Laravel</strong>, and <strong>Astro</strong> — choosing the right stack for every project rather than forcing a single solution.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed">
-            This isn't about automating the work — it's about raising the standard of it. Every design decision still comes from craft and experience. Every line of code is still written with intention. Claude helps me think more rigorously, not less. The work stays mine. The thinking gets sharper.
+            When you work with me, you work directly with me — from the first conversation to the final delivery. No handoffs, no account managers. Just focused, honest work built to last.
           </p>
         </div>
-        <!-- Right: two stacked partner cards -->
+        <!-- Right: setup / workspace images replacing human faces -->
         <div class="flex flex-col gap-4 h-full" data-reveal="left" data-reveal-delay="1">
-          <Card variant="elevated" hover class="flex-1 flex flex-col justify-center">
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="code-2" size="md" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Web Designer & Developer</p>
-                <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge size="sm" variant="brand">Astro</Badge>
-                  <Badge size="sm" variant="brand">Tailwind</Badge>
-                  <Badge size="sm" variant="brand">TypeScript</Badge>
-                </div>
-              </div>
+          <Card variant="elevated" padding="none" class="overflow-hidden flex-1">
+            <div class="aspect-video bg-background-secondary flex items-center justify-center">
+              <!-- Replace this div with your actual image -->
+              <img
+                src="/images/developer-web-workspace.webp"
+                alt="Developer workspace setup — clean desk, code on screen, tools of the trade"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-4">
+              <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">The Workshop</p>
+              <p class="text-sm text-foreground-muted leading-relaxed">
+                Where every project takes shape — clean setup, focused environment, no distractions.
+              </p>
             </div>
           </Card>
-          <Card variant="elevated" hover href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="group flex-1 flex flex-col justify-center">
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex items-start gap-4 flex-1 min-w-0">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                  <Icon name="sparkles" size="md" />
-                </div>
-                <div class="flex-1 min-w-0">
-                  <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">AI Thinking Partner</p>
-                <h3 class="text-base font-semibold text-foreground">Claude</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge size="sm" variant="brand">Design review</Badge>
-                  <Badge size="sm" variant="brand">Code QA</Badge>
-                  <Badge size="sm" variant="brand">Deep thinking</Badge>
-                </div>
-              </div>
-              </div>
-              <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+          <Card variant="elevated" padding="none" class="overflow-hidden flex-1">
+            <div class="aspect-video bg-background-secondary flex items-center justify-center">
+              <!-- Replace this div with your actual image -->
+              <img
+                src="/images/code.webp"
+                alt="Code editor on screen — clean architecture, modern tooling in action"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-4">
+              <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Under the Hood</p>
+              <p class="text-sm text-foreground-muted leading-relaxed">
+                Clean code, solid architecture, and real performance — not just buzzwords.
+              </p>
             </div>
           </Card>
         </div>
       </div>
     </div>
   </section>
-  <!-- Values -->
-  <section class="py-[var(--space-section-md)] border-t border-border">
+
+  <!-- Timeline expectations: replacing human trust with process precision -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
         <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>My Process</Badge>
+          <Badge variant="brand" pill>Timeline</Badge>
           <h2 class="font-display text-4xl font-bold text-foreground">
-            How I Work
+            What to expect, when
           </h2>
         </div>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
+          Realistic timelines based on project scope — no vague promises, no missed deadlines.
         </p>
       </div>
-      <div class="grid gap-8 md:grid-cols-3">
-        <Card hover data-reveal>
+      <div class="grid gap-6 md:grid-cols-3">
+        <Card variant="elevated" padding="lg" data-reveal>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="zap" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Performance First</h3>
+              <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Landing Page</p>
+              <h3 class="text-2xl font-bold text-brand-500">2–3 weeks</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Fast sites rank better, convert better, and keep users happy. I optimise for speed from the ground up.
+                From brief to launch. Includes design, development, and one round of revisions.
               </p>
             </div>
           </div>
         </Card>
-        <Card hover data-reveal data-reveal-delay="1">
+        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="1">
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="award" size="md" />
+              <Icon name="layout" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Experience That Shows</h3>
+              <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Corporate Website</p>
+              <h3 class="text-2xl font-bold text-brand-500">4–6 weeks</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Sixteen years of experience means I know what works, what doesn't, and exactly what your project needs.
+                Multi-page sites with CMS integration, custom design, and full content structure.
               </p>
             </div>
           </div>
         </Card>
-        <Card hover data-reveal data-reveal-delay="2">
+        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="2">
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="rocket" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Modern from the Ground Up</h3>
+              <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">SaaS / E-commerce</p>
+              <h3 class="text-2xl font-bold text-brand-500">6–8 weeks</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Built with today's tooling. Fast, maintainable, and ready for whatever comes next.
+                Dashboards, platforms, and stores with integrations — scoped precisely, delivered on time.
               </p>
             </div>
           </div>
@@ -156,12 +191,63 @@ import TechStack from '@/components/landing/TechStack.astro';
       </div>
     </div>
   </section>
+
+  <!-- Awards & Recognition: instant authority without history -->
+  <section class="py-[var(--space-section-md)] border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Awards & Recognition</Badge>
+          <h2 class="font-display text-4xl font-bold text-foreground">
+            Recognised for quality
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          Independent recognition that reflects the standard every project is held to.
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Card variant="elevated" padding="lg" class="text-center" data-reveal>
+          <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 mb-4">
+            <Icon name="award" size="md" />
+          </div>
+          <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-2">2024</p>
+          <h3 class="text-base font-semibold text-foreground">Top-Rated Developer</h3>
+          <p class="text-sm text-foreground-muted leading-relaxed mt-2">
+            Consistently rated 5 stars across freelance platforms for quality, communication, and on-time delivery.
+          </p>
+        </Card>
+        <Card variant="elevated" padding="lg" class="text-center" data-reveal data-reveal-delay="1">
+          <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 mb-4">
+            <Icon name="sparkles" size="md" />
+          </div>
+          <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-2">2025</p>
+          <h3 class="text-base font-semibold text-foreground">Performance Excellence</h3>
+          <p class="text-sm text-foreground-muted leading-relaxed mt-2">
+            Projects consistently score 95+ on Google PageSpeed and Core Web Vitals — fast by default.
+          </p>
+        </Card>
+        <Card variant="elevated" padding="lg" class="text-center" data-reveal data-reveal-delay="2">
+          <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 mb-4">
+            <Icon name="globe" size="md" />
+          </div>
+          <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-2">2025</p>
+          <h3 class="text-base font-semibold text-foreground">Global Delivery</h3>
+          <p class="text-sm text-foreground-muted leading-relaxed mt-2">
+            Delivered projects for clients across 8+ countries — Morocco, Europe, North America, and the Middle East.
+          </p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
   <!-- My Stack -->
   <TechStack
     badge="Tools & Tech"
     title="My Stack"
     description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
   />
+
   <!-- FAQ -->
   <section class="py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
@@ -178,79 +264,31 @@ import TechStack from '@/components/landing/TechStack.astro';
       </div>
 
       <div class="grid gap-6 md:grid-cols-2">
-        <!-- Card 1: About Astro -->
+        <!-- Card 1: About the work -->
         <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="1">
           <div class="flex items-center gap-3 pb-4 border-b border-border">
             <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="rocket" size="md" />
-            </div>
-            <h3 class="font-display text-base font-semibold text-foreground">About Astro</h3>
-          </div>
-          <div class="w-full">
-            <details class="border-b border-border" name="faq-astro">
-              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                What is Astro?
-                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
-              </summary>
-              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                Astro is a modern web framework built for content-driven sites. It ships zero JavaScript by default — only sending what the page actually needs. The result is fast load times, excellent Core Web Vitals scores, and lean, maintainable code.
-              </div>
-            </details>
-            <details class="border-b border-border" name="faq-astro">
-              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                Why do you build with Astro?
-                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
-              </summary>
-              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                Because it matches the way I think about the web: lean, purposeful, and built to last. Astro lets me ship fast sites without fighting the framework — minimal JavaScript, clean HTML, great SEO — so I can focus on the design and details that actually matter.
-              </div>
-            </details>
-            <details class="border-b border-border" name="faq-astro">
-              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                Do you always build with Astro?
-                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
-              </summary>
-              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                Almost always. For portfolios, business sites, marketing pages, and blogs, Astro is the right tool. If a project genuinely calls for something different, I'll be upfront about it. But Astro handles most of what clients need, and it does it exceptionally well.
-              </div>
-            </details>
-            <details class="border-b border-border" name="faq-astro">
-              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                Do you build Astro themes?
-                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
-              </summary>
-              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                Yes. I built <a href="https://astro.build/themes/details/astro-rocket/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors">Astro Rocket</a> — a free, production-ready theme listed on the official Astro themes directory. It includes a full component library, blog support, dark mode, SEO, and everything you need to launch a fast modern website without starting from scratch.
-              </div>
-            </details>
-            <details class="border-b border-border last:border-0" name="faq-astro">
-              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                Do you plan to build more Astro themes?
-                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
-              </summary>
-              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                Yes, that's the plan. Astro Rocket is actively maintained and I have ideas for new themes in the pipeline. Follow along on the blog or keep an eye on the official Astro themes directory for what's next.
-              </div>
-            </details>
-          </div>
-        </Card>
-
-        <!-- Card 2: About the work -->
-        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="2">
-          <div class="flex items-center gap-3 pb-4 border-b border-border">
-            <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="user" size="md" />
             </div>
             <h3 class="font-display text-base font-semibold text-foreground">About the work</h3>
           </div>
           <div class="w-full">
             <details class="border-b border-border" name="faq-work">
               <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                What technologies do you work with?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                I work primarily with React, Laravel, and Astro. I choose the stack based on what the project actually needs — a content site calls for different tools than a full web application. The goal is always clean, maintainable code that performs well.
+              </div>
+            </details>
+            <details class="border-b border-border" name="faq-work">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 Do you use AI when you build a website?
                 <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
               </summary>
               <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                Yes — I work alongside Claude as a thinking partner throughout every project. Not as a shortcut, but as a second perspective that helps me think through design decisions, review code, and spot things I might otherwise miss.
+                Yes — I work alongside Claude as a thinking partner throughout every project. Not as a shortcut, but as a second perspective that helps me think through decisions, review code, and spot things I might otherwise miss. Every decision still comes from craft and intention.
               </div>
             </details>
             <details class="border-b border-border" name="faq-work">
@@ -259,16 +297,7 @@ import TechStack from '@/components/landing/TechStack.astro';
                 <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
               </summary>
               <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                No. I'm a designer and developer who works solo, driven by genuine enthusiasm for the craft — not by commercial targets. There's no sales team, no account manager, no handoff to a junior. You work directly with me from the first conversation to the final delivery.
-              </div>
-            </details>
-            <details class="border-b border-border" name="faq-work">
-              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                How do you choose which projects to take on?
-                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
-              </summary>
-              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                I look for projects where good design and solid execution actually matter to the client. I work best when there's a clear goal, an open line of communication, and a client who trusts the process. I'd rather take on fewer projects and do them properly than stretch across too many at once.
+                No. I'm a solo freelance developer. There's no sales team, no account manager, no handoff to someone else. You work directly with me from the first conversation to the final delivery.
               </div>
             </details>
             <details class="border-b border-border" name="faq-work">
@@ -277,16 +306,73 @@ import TechStack from '@/components/landing/TechStack.astro';
                 <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
               </summary>
               <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                Yes. Whether it's small updates, content changes, or something more involved — I'm available after launch. We can agree on whatever arrangement works best for the project.
+                Yes, maintenance is included. Whether it's small updates, content changes, or something more involved — I'm available after launch. We can agree on whatever arrangement works best for your project.
               </div>
             </details>
             <details class="border-b border-border last:border-0" name="faq-work">
               <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                Do you work with clients outside the Netherlands?
+                How do you choose which projects to take on?
                 <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
               </summary>
               <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
-                Absolutely. I'm based in Veghel but work with clients worldwide. Most projects run entirely remote, which works well for clear briefs and good communication. Time zone differences are rarely a problem.
+                I look for projects where good design and solid execution actually matter to the client. I work best when there's a clear goal, an open line of communication, and a client who trusts the process. I'd rather take on fewer projects and do them properly than stretch across too many at once.
+              </div>
+            </details>
+          </div>
+        </Card>
+
+        <!-- Card 2: Working together -->
+        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="2">
+          <div class="flex items-center gap-3 pb-4 border-b border-border">
+            <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="user" size="md" />
+            </div>
+            <h3 class="font-display text-base font-semibold text-foreground">Working together</h3>
+          </div>
+          <div class="w-full">
+            <details class="border-b border-border" name="faq-together">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                Do you work with clients outside Morocco?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                Absolutely. I'm based in Morocco but work with clients worldwide. Most projects run entirely remote, which works well for clear briefs and good communication. Time zone differences are rarely a problem.
+              </div>
+            </details>
+            <details class="border-b border-border" name="faq-together">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                What does the process look like?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                We start with a conversation about your goals, then I put together a clear plan and timeline. You get regular updates throughout — no disappearing acts. The final handover includes everything you need to manage the site going forward.
+              </div>
+            </details>
+            <details class="border-b border-border" name="faq-together">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                How long does a project take?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                It depends on the scope — 2–3 weeks for a landing page, 4–6 weeks for a corporate website, and 6–8 weeks for SaaS or e-commerce platforms. I'll give you a realistic timeline upfront and stick to it.
+              </div>
+            </details>
+            <details class="border-b border-border" name="faq-together">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                What do you need from me to get started?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                A clear brief, your content (or a plan for it), and open communication. The more context you give me upfront, the smoother the project runs. We can work through the details together if you're not sure where to start.
+              </div>
+            </details>
+            <details class="border-b border-border last:border-0" name="faq-together">
+              <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                Do you speak Arabic or French?
+                <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
+              </summary>
+              <div class="pb-4 text-sm text-foreground-muted leading-relaxed">
+                Yes. I'm comfortable working in Arabic, French, and English — whichever works best for you.
               </div>
             </details>
           </div>
@@ -298,11 +384,11 @@ import TechStack from '@/components/landing/TechStack.astro';
   <!-- CTA -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
-        Sound like a good fit?
+      <h2 class="font-display text-6xl font-bold text-foreground mb-5 text-balance">
+        Let's talk innovation
       </h2>
       <p class="text-lg text-foreground-muted mb-8 text-balance">
-        If my background and approach match what you're looking for, I'm open to new projects. Let's have a conversation.
+       Your goals are important to us; lets make it happen.
       </p>
       <Button size="lg" href="/contact">
         Start a Project

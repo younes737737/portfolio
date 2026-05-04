@@ -1,0 +1,178 @@
+---
+title: "Core Web Vitals in 2026: A Practical Optimization Guide for Morocco"
+description: "How to measure and fix Core Web Vitals for websites in Morocco. Practical techniques for LCP, CLS and INP with real examples using Astro and Tailwind CSS."
+
+publishedAt: 2026-05-03
+author: "Younes El Anbri"
+tags: ["Performance", "Core Web Vitals", "SEO", "Web Development"]
+featured: true
+draft: false
+locale: "en"
+image: "/blog/core.webp"
+imageAlt: "Core Web Vitals optimization in Marrakech - website performance and SEO"
+---
+
+Google has been using Core Web Vitals as a ranking factor since 2021. In 2026, with INP fully replacing FID, the standard has moved again. Most websites in Morocco still fail these metrics — which is a direct competitive advantage for those that don't.
+
+This is a practical guide. No padding. Just what the metrics are, why they matter in the Moroccan context, and exactly how to fix them.
+
+## What Core Web Vitals Are and Why They Matter for Moroccan Websites
+
+Core Web Vitals are three measurements Google uses to assess real-world user experience. They're not suggestions — they're ranking signals that directly affect where your site appears in search results.
+
+For businesses in Marrakech competing for visibility on Google.ma or targeting international visitors, failing these metrics means giving ranking positions to competitors who pass them.
+
+### The Three Metrics That Matter in 2026
+
+**LCP — Largest Contentful Paint** measures how long the main content of a page takes to load. Target: under 2.5 seconds. Most failing sites in Morocco score between 4–8 seconds, usually because of unoptimised images or render-blocking scripts.
+
+**CLS — Cumulative Layout Shift** measures visual stability — whether content jumps around as the page loads. Target: under 0.1. The most common cause is images without explicit dimensions, or fonts that load late and shift text.
+
+**INP — Interaction to Next Paint** replaced FID in March 2024. It measures how quickly a page responds to user interactions like clicks and taps. Target: under 200ms. Heavy JavaScript is the usual culprit.
+
+## How to Measure Your Current Scores
+
+Before fixing anything, measure accurately. There are two types of data worth knowing.
+
+### Lab Data vs Field Data
+
+**Lab data** is simulated, from tools like PageSpeed Insights or Lighthouse. Run it at [pagespeed.web.dev](https://pagespeed.web.dev) and enter your URL. Always check the mobile score — that's what matters most for Morocco's traffic profile, where over 80% of users are on mobile.
+
+**Field data** comes from real Chrome users visiting your site, reported via the Chrome User Experience Report. This is what Google actually uses for ranking. It shows up in PageSpeed Insights once your site has enough real traffic.
+
+Treat a mobile PageSpeed score of 90+ as the target worth working toward.
+
+## Fixing LCP: The Highest-Impact Optimisation
+
+LCP failures are almost always image or font related. Here's the fix sequence.
+
+### Convert Images to WebP and Set the Right Loading Priority
+
+WebP images are 25–35% smaller than JPEG at equivalent quality. In Astro, the `<Image />` component handles conversion automatically:
+
+```astro
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero.jpg';
+---
+
+<Image
+  src={heroImage}
+  alt="Web developer Marrakech — Younes El Anbri"
+  width={1200}
+  height={630}
+  format="webp"
+  loading="eager"
+  fetchpriority="high"
+/>
+```
+
+The `loading="eager"` and `fetchpriority="high"` attributes tell the browser to treat this image as a priority — critical for LCP on the hero image.
+
+### Preload the Hero Image
+
+Add a preload hint in the `<head>` for your above-the-fold image. In Astro this goes in your layout file:
+
+```html
+<link
+  rel="preload"
+  as="image"
+  href="/assets/hero.webp"
+  fetchpriority="high"
+/>
+```
+
+This alone can reduce LCP by 0.5–1.5 seconds on slower mobile connections — a meaningful difference on Moroccan networks.
+
+### Remove Render-Blocking Resources
+
+Scripts and stylesheets in `<head>` without `defer` or `async` block the browser from painting anything. PageSpeed Insights will list the offenders under "Eliminate render-blocking resources." In Astro, scripts are deferred by default — one reason it performs well without extra configuration.
+
+## Fixing CLS: Stop Your Layout From Jumping
+
+CLS issues are usually straightforward once you identify the source.
+
+### Always Declare Image Dimensions
+
+Every image needs explicit `width` and `height` attributes. Without them, the browser doesn't know how much space to reserve and the layout shifts when the image loads:
+
+```html
+<!-- Causes CLS — browser doesn't know the height -->
+<img src="hero.webp" alt="..." />
+
+<!-- Correct — browser reserves the right space -->
+<img src="hero.webp" alt="..." width="1200" height="630" />
+```
+
+Astro's `<Image />` component sets these automatically from the source file metadata.
+
+### Handle Web Fonts Without Layout Shift
+
+Fonts cause CLS when they load and replace the fallback, shifting surrounding text. The practical fix is two-part: add `font-display: optional` for non-critical fonts, and preload the font files you need immediately. Using a system font stack as a fallback that closely matches the web font's metrics also reduces the visible shift.
+
+### Reserve Space for Dynamic Content
+
+Cookie banners, ads, and any content injected above existing page content are major CLS sources. Always give these elements a fixed-height container so the browser reserves space before the content loads.
+
+## Fixing INP: Keeping Interactions Responsive
+
+INP is the newest metric and the hardest to optimise because it depends entirely on JavaScript execution.
+
+### Ship Less JavaScript
+
+The most effective INP fix is reducing JavaScript. Astro's islands architecture is built for this — interactive components are only hydrated where needed, leaving the rest of the page as static HTML. A typical Astro site ships 90% less JavaScript than an equivalent React or Next.js build.
+
+### Defer Non-Critical Scripts
+
+Any script that doesn't need to run on page load should be deferred:
+
+```html
+<!-- Loaded immediately — blocks interaction -->
+<script src="analytics.js"></script>
+
+<!-- Deferred — doesn't block -->
+<script src="analytics.js" defer></script>
+```
+
+Third-party scripts — analytics, chat widgets, social embeds — are the most common INP offenders. Load them after the page is interactive.
+
+### Break Up Long Tasks
+
+JavaScript tasks that take more than 50ms block the main thread and delay interaction responses. If you have long-running scripts, use `setTimeout` or `scheduler.postTask` to break them into smaller chunks that yield to the browser between steps.
+
+## Maintaining Good Scores Over Time
+
+Passing Core Web Vitals once isn't enough. Scores degrade as content, plugins, and third-party scripts accumulate.
+
+### Set Up Automated Monitoring
+
+Run PageSpeed Insights on your key pages monthly. For a more automated setup, Google Search Console's Core Web Vitals report shows field data trends over time — it's free and updates weekly.
+
+### Test Every New Feature Against Performance
+
+Before adding any new third-party script, image, or component to your site, check the PageSpeed impact. The cost of adding a chat widget or marketing pixel is often 5–15 points on the mobile score.
+
+### Use a CDN for Static Assets
+
+Serving images and scripts from a CDN reduces latency for users across Morocco and internationally. Vercel, Netlify, and Cloudflare all include CDN delivery on their free tiers.
+
+## A Quick Wins Checklist
+
+If you want the highest-impact fixes first, work through this list in order:
+
+1. Convert all images to WebP with explicit dimensions
+2. Add `fetchpriority="high"` to your LCP image
+3. Defer all third-party scripts
+4. Audit and remove unused JavaScript and CSS
+5. Preload critical fonts
+6. Reserve space for any dynamic or injected content
+7. Enable caching headers on static assets
+8. Move to a CDN if you're on shared hosting
+
+Most sites in Morocco can go from a PageSpeed score of 45 to 85+ by working through this list alone — without changing the design or functionality at all.
+
+## Final Thought
+
+Core Web Vitals are not a one-time task. They're a discipline. The sites that maintain strong scores over time treat performance as part of every development decision — not as a cleanup job before an audit.
+
+If your site in Marrakech or Morocco is failing these metrics and you want to fix it properly, [get in touch](/contact). I'll audit your current scores and put together a realistic plan.

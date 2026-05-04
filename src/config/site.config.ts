@@ -73,7 +73,6 @@ const siteConfig: SiteConfig = {
     country: 'Maroc',
   },
   socialLinks: [
-    'https://github.com/developer_webgrowth',
     'https://x.com/developer_webgrowth',
     'https://www.linkedin.com/in/developer_webgrowth',
     'https://instagram.com/developer_webgrowth',
