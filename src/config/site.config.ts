@@ -58,7 +58,7 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Developer Web',
+  name: 'Developer-web',
   description:
     'Busy building premium websites for businesses. We combine technical discipline with creative excellence. We don\'t just "make websites"—we engineer digital tools that solve business problems.',
   url: SITE_URL || 'https://developer-web.com',
@@ -90,10 +90,10 @@ const siteConfig: SiteConfig = {
   branding: {
     logo: {
       alt: 'Developer Web',
-      imageUrl: '/favicon.svg',
+      imageUrl: '/logo.png',
     },
     favicon: {
-      svg: '/favicon.svg',
+      svg: '/logo.png',
     },
     colors: {
       themeColor: '#3b82f6',

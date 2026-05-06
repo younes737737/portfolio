@@ -92,7 +92,7 @@ const stack = defineCollection({
     description: z.string(),
     version: z.string(),
     url: z.string().url(),
-    icon: z.string(), // icon name, e.g. 'brand-astro'
+    devIcon: z.string(), // icon name, e.g. 'brand-astro'
     colorOklch: z.string(), // OKLCH params, e.g. '62.5% 0.22 38'
     order: z.number().default(0),
   }),
@@ -100,7 +100,6 @@ const stack = defineCollection({
 
 export const collections = {
   blog,
-  pages,
   authors,
   faqs,
   stack,

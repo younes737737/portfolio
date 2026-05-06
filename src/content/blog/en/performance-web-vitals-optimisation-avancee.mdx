@@ -1,9 +1,9 @@
 ---
-title: "Core Web Vitals in 2026: A Practical Optimization Guide for Morocco"
-description: "How to measure and fix Core Web Vitals for websites in Morocco. Practical techniques for LCP, CLS and INP with real examples using Astro and Tailwind CSS."
+title: "Practical Optimization Guide for Websites"
+description: "How to measure and fix Core Web Vitals for websites in Morocco. Practical techniques for LCP, CLS and INP with real examples using laravel and Tailwind CSS."
 
 publishedAt: 2026-05-03
-author: "Younes El Anbri"
+author: "Youness"
 tags: ["Performance", "Core Web Vitals", "SEO", "Web Development"]
 featured: true
 draft: false
@@ -48,7 +48,7 @@ LCP failures are almost always image or font related. Here's the fix sequence.
 
 ### Convert Images to WebP and Set the Right Loading Priority
 
-WebP images are 25–35% smaller than JPEG at equivalent quality. In Astro, the `<Image />` component handles conversion automatically:
+WebP images are 25–35% smaller than JPEG at equivalent quality. In Laravel with Tailwind CSS, the `<Image />` component handles conversion automatically:
 
 ```astro
 ---
@@ -58,7 +58,7 @@ import heroImage from '../assets/hero.jpg';
 
 <Image
   src={heroImage}
-  alt="Web developer Marrakech — Younes El Anbri"
+  alt="Web developer Marrakech — Youness"
   width={1200}
   height={630}
   format="webp"
@@ -71,7 +71,7 @@ The `loading="eager"` and `fetchpriority="high"` attributes tell the browser to 
 
 ### Preload the Hero Image
 
-Add a preload hint in the `<head>` for your above-the-fold image. In Astro this goes in your layout file:
+Add a preload hint in the `<head>` for your above-the-fold image. In laravel this goes in your layout file:
 
 ```html
 <link
@@ -86,7 +86,7 @@ This alone can reduce LCP by 0.5–1.5 seconds on slower mobile connections — 
 
 ### Remove Render-Blocking Resources
 
-Scripts and stylesheets in `<head>` without `defer` or `async` block the browser from painting anything. PageSpeed Insights will list the offenders under "Eliminate render-blocking resources." In Astro, scripts are deferred by default — one reason it performs well without extra configuration.
+Scripts and stylesheets in `<head>` without `defer` or `async` block the browser from painting anything. PageSpeed Insights will list the offenders under "Eliminate render-blocking resources." In Laravel with Tailwind CSS, scripts are deferred by default — one reason it performs well without extra configuration.
 
 ## Fixing CLS: Stop Your Layout From Jumping
 
@@ -104,7 +104,7 @@ Every image needs explicit `width` and `height` attributes. Without them, the br
 <img src="hero.webp" alt="..." width="1200" height="630" />
 ```
 
-Astro's `<Image />` component sets these automatically from the source file metadata.
+Laravel with Tailwind CSS's `<Image />` component sets these automatically from the source file metadata.
 
 ### Handle Web Fonts Without Layout Shift
 
@@ -120,7 +120,7 @@ INP is the newest metric and the hardest to optimise because it depends entirely
 
 ### Ship Less JavaScript
 
-The most effective INP fix is reducing JavaScript. Astro's islands architecture is built for this — interactive components are only hydrated where needed, leaving the rest of the page as static HTML. A typical Astro site ships 90% less JavaScript than an equivalent React or Next.js build.
+The most effective INP fix is reducing JavaScript. laravel islands architecture is built for this — interactive components are only hydrated where needed, leaving the rest of the page as static HTML. A typical laravel site ships 90% less JavaScript than an equivalent React or Next.js build.
 
 ### Defer Non-Critical Scripts
 

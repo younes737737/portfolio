@@ -3,9 +3,10 @@
  * Icon component
  * UI icons  → Lucide  (lucide.dev)
  * Brand/social icons → Simple Icons (simpleicons.org)
+ * Tech stack icons → DevIcon (devicon.dev)
  *
- * Same public API as before — callers pass the short name (e.g. "arrow-right",
- * "github", "x-twitter"). This wrapper resolves it to the correct Iconify set.
+ * Same public API as before — callers pass a short name (e.g. "arrow-right",
+ * "github", "x-twitter", "javascript"). This wrapper resolves it to the correct Iconify set.
  */
 import { Icon as AstroIcon } from 'astro-icon/components';
 import { cn } from '@/lib/cn';
@@ -15,10 +16,18 @@ interface Props {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   class?: string;
   strokeWidth?: number;
+  useDevIcon?: boolean;
   [key: string]: unknown;
 }
 
-const { name, size = 'md', class: className, strokeWidth = 2, ...attrs } = Astro.props;
+const {
+  name,
+  size = 'md',
+  class: className,
+  strokeWidth = 2,
+  useDevIcon = false,
+  ...attrs
+} = Astro.props;
 
 const sizes: Record<string, string> = {
   xs: 'w-3 h-3',
@@ -28,29 +37,66 @@ const sizes: Record<string, string> = {
   xl: 'w-8 h-8',
 };
 
+// Mapping pour DevIcon
+const devIconMap: Record<string, string> = {
+  javascript: 'devicon:javascript',
+  typescript: 'devicon:typescript',
+  react: 'devicon:react',
+  nodejs: 'devicon:nodejs',
+  python: 'devicon:python',
+  docker: 'devicon:docker',
+  git: 'devicon:git',
+  postgresql: 'devicon:postgresql',
+  mongodb: 'devicon:mongodb',
+  kubernetes: 'devicon:kubernetes',
+  nextjs: 'devicon:nextjs',
+  astro: 'devicon:astro',
+  tailwindcss: 'devicon:tailwindcss',
+  html: 'devicon:html5',
+  css: 'devicon:css3',
+  sass: 'devicon:sass',
+  webpack: 'devicon:webpack',
+  npm: 'devicon:npm',
+  yarn: 'devicon:yarn',
+  laravel: 'devicon:laravel',
+  wordpress: 'devicon:wordpress',
+  jira: 'devicon:jira',
+  mysql: 'devicon:mysql',
+};
+
 /**
  * Maps short legacy names → fully-qualified Iconify names.
  * Social / brand icons use simple-icons; everything else uses lucide.
  */
 const iconMap: Record<string, string> = {
   // Social & brand → Simple Icons
-  github:           'simple-icons:github',
-  'x-twitter':      'simple-icons:x',
-  twitter:          'simple-icons:x',
-  instagram:        'simple-icons:instagram',
-  linkedin:         'simple-icons:linkedin',
-  bluesky:          'simple-icons:bluesky',
+  github: 'simple-icons:github',
+  'x-twitter': 'simple-icons:x',
+  twitter: 'simple-icons:x',
+  instagram: 'simple-icons:instagram',
+  linkedin: 'simple-icons:linkedin',
+  bluesky: 'simple-icons:bluesky',
   // Tech stack → Simple Icons
-  'brand-astro':      'simple-icons:astro',
-  'brand-tailwind':   'simple-icons:tailwindcss',
+  'brand-astro': 'simple-icons:astro',
+  'brand-tailwind': 'simple-icons:tailwindcss',
   'brand-typescript': 'simple-icons:typescript',
-  'brand-react':      'simple-icons:react',
-  'brand-mdx':        'simple-icons:mdx',
-  'brand-claude':     'simple-icons:anthropic',
+  'brand-react': 'simple-icons:react',
+  'brand-mdx': 'simple-icons:mdx',
+  'brand-claude': 'simple-icons:anthropic',
 };
 
-const resolvedName = iconMap[name] ?? `lucide:${name}`;
-const isSimpleIcon = resolvedName.startsWith('simple-icons:');
+let resolvedName;
+let isSimpleIcon = false;
+
+// Si useDevIcon est true, utiliser DevIcon
+if (useDevIcon && devIconMap[name]) {
+  resolvedName = devIconMap[name];
+  isSimpleIcon = false;
+} else {
+  // Utiliser les mappings existants (Simple Icons ou Lucide)
+  resolvedName = iconMap[name] ?? `lucide:${name}`;
+  isSimpleIcon = resolvedName.startsWith('simple-icons:');
+}
 ---
 
 <AstroIcon

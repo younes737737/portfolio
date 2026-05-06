@@ -40,8 +40,12 @@ const { title, description, image, imageAlt, noindex, nofollow, showScrollProgre
     size="lg"
     showActiveState
     showCta={true}
-    cta={{ label: 'Portfolio', href: '/projects', icon: 'briefcase', trailingIcon: 'arrow-right' }}
-    showScrollProgress={showScrollProgress}
+cta={{ 
+  label: 'Contact', 
+  href: 'mailto:contact@developer-web.com?subject=Project Inquiry&body=Hello, I would like to discuss a project.', 
+  icon: 'mail', 
+  trailingIcon: 'arrow-right' 
+}}    showScrollProgress={showScrollProgress}
   />
 
   <main class="min-h-screen pt-16">

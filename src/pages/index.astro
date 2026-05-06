@@ -8,11 +8,111 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
 import siteConfig from '@/config/site.config';
+import Progress from '@/components/ui/data-display/Progress/Progress.astro';
 
+const technologies = [
+  {
+    title: 'Laravel & PHP',
+    description: 'PHP framework with Eloquent ORM, Blade templating, and a robust ecosystem',
+    devIcon: 'laravel',
+    category: 'Backend',
+    level: 'Expert',
+    years: 2,
+    color: '#FF2D20',
+  },
+  {
+    title: 'React',
+    description: 'Component-based architecture with SSR, RSC, and App Router',
+    devIcon: 'react',
+    category: 'Frontend',
+    level: 'Expert',
+    years: 2,
+    color: '#61DAFB',
+    featured: false,
+  },
+  {
+    title: 'JavaScript / TypeScript',
+    description: 'Modern JavaScript with full TypeScript type safety across the stack',
+    devIcon: 'javascript',
+    category: 'Frontend',
+    level: 'Expert',
+    years: 2,
+    color: '#F7DF1E',
+  },
+  {
+    title: 'WordPress & Figma',
+    description: 'Custom WordPress development and modern UI/UX design with Figma',
+    devIcon: 'wordpress',
+    category: 'Frontend',
+    level: 'Avancé',
+    years: 2,
+    color: '#21759B',
+  },
+  {
+    title: 'Tailwind CSS & Bootstrap 5',
+    description: 'Utility-first CSS, design systems, and responsive UI development',
+    devIcon: 'tailwindcss',
+    category: 'Frontend',
+    level: 'Expert',
+    years: 2,
+    color: '#06B6D4',
+  },
+  {
+    title: 'MySQL, NoSQL & MongoDB',
+    description: 'Relational and NoSQL database design, indexing, and performance optimization',
+    devIcon: 'mysql',
+    category: 'Backend',
+    level: 'Avancé',
+    years: 2,
+    color: '#4169E1',
+  },
+  {
+    title: 'Git & CI/CD',
+    description: 'Version control, GitHub Actions, automated testing, and deployment pipelines',
+    devIcon: 'git',
+    category: 'DevOps',
+    level: 'Expert',
+    years: 2,
+    color: '#F05032',
+  },
+  {
+    title: 'Jira',
+    description: 'Project management and issue tracking',
+    devIcon: 'jira',
+    category: 'DevOps',
+    level: 'Expert',
+    years: 2,
+    color: '#0052CC',
+  },
+];
+
+const categoryMeta = {
+  Frontend: {
+    color: '#FF2D20',
+    bg: 'rgba(124,58,237,0.08)',
+    text: '#6D28D9',
+    desc: 'Interfaces & user experiences',
+  },
+  Backend: {
+    color: '#059669',
+    bg: 'rgba(5,150,105,0.08)',
+    text: '#047857',
+    desc: 'Databases & business logic',
+  },
+  DevOps: {
+    color: '#2563EB',
+    bg: 'rgba(37,99,235,0.08)',
+    text: '#1D4ED8',
+    desc: 'Infrastructure, CI/CD & deployments',
+  },
+};
+const allCategories = ['All', 'Frontend', 'Backend', 'DevOps'];
+const levelConfig = {
+  Expert: { pct: 95, color: '#059669', bg: 'rgba(5,150,105,0.08)', text: '#065F46' },
+  Avancé: { pct: 78, color: '#2563EB', bg: 'rgba(37,99,235,0.08)', text: '#1E40AF' },
+};
 const projectItems = await getCollection('projects');
-const featuredProjects = projectItems
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 4);
+const featuredProjects = projectItems.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => {
@@ -25,24 +125,25 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 <LandingLayout
   title="Developer Web — Engineering Digital Excellence"
   description="Busy building premium websites for businesses. We combine technical discipline with creative excellence to engineer digital tools that solve business problems."
-  image="/og-default.svg"
+  image="/logo.webp"
   includeOrgSchema={true}
   includeProfessionalServiceSchema={true}
 >
   <!-- Hero -->
   <Hero layout="centered" size="xl" class="hero-dark-gradient" showScrollIndicator>
-    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">Building Premium Solutions</Badge>
-
     <h1 slot="title">
-      <span class="text-brand-500 dark:text-foreground [-webkit-text-fill-color:currentColor]">Developer Web —</span><br />
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Digital Excellence</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Business Solutions</span>
+      <span class="text-brand-500 dark:text-foreground [-webkit-text-fill-color:currentColor]"
+        >Developer Web —</span
+      ><br />
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Digital Excellence</span
+      ><span class="text-foreground [-webkit-text-fill-color:currentColor]">
+        &amp; Business Solutions</span
+      >
     </h1>
 
-    <p slot="description">
-      We don't just "make websites"—we engineer digital tools that solve business problems. Premium solutions for modern businesses.
-    </p>
+    <p slot="description">Your website should bring clients in. Not just look good.</p>
 
-   <Fragment slot="actions">
+    <Fragment slot="actions">
       <Button size="lg" href="/projects">
         Our Premium Work
         <Icon name="arrow-right" size="sm" />
@@ -56,46 +157,57 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </Hero>
 
   <!-- Services Section -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+  <section
+    class="bg-background-secondary border-border relative z-10 border-t py-[var(--space-section-md)]"
+  >
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>Services</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            What I do
+          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
+            We handle everything. <span class="text-brand-500">You focus on your business.</span>
           </h2>
         </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
-          From concept to launch.
+        <p class="text-foreground-muted mx-auto max-w-2xl text-lg">
+          Every project is engineered with clean architecture, security best practices, and
+          long-term maintainability — not just delivered, but continuously improved.
         </p>
       </div>
 
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <!-- Web Design -->
+        <!-- Custom Website Development -->
         <Card hover data-reveal>
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="layout" size="sm" />
+            <div
+              class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
+            >
+              <Icon name="layout" size="lg" />
             </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Web Design</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Clean, modern interfaces that look great on every screen. Focused on clarity, usability, and your brand identity.
+            <div class="min-w-65 flex-1">
+              <h3 class="text-foreground text-base font-semibold">
+                01. Custom Website Development
+              </h3>
+              <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
+                Fast, Clean and modern websites built from scratch that look great on every screen.
+                Focused on clarity, usability, and your brand identity.
               </p>
             </div>
           </div>
         </Card>
 
-        <!-- Web Development -->
+        <!-- Security & Maintenance -->
         <Card hover data-reveal data-reveal-delay="1">
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="code" size="sm" />
+            <div
+              class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
+            >
+              <Icon name="code" size="lg" />
             </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Web Development</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Fast, accessible websites built with modern tooling. Astro, Tailwind, and best-practice architecture from day one.
+            <div class="min-w-0 flex-1">
+              <h3 class="text-foreground text-base font-semibold">02. Security & Maintenance</h3>
+              <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
+                Continuous updates, monitoring, and protection to keep your website fast, secure,
+                and reliable. Accessible websites built with secure tooling.
               </p>
             </div>
           </div>
@@ -104,156 +216,329 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         <!-- Performance -->
         <Card hover data-reveal data-reveal-delay="2">
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="zap" size="sm" />
+            <div
+              class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
+            >
+              <Icon name="zap" size="lg" />
             </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Performance Optimization</h3>
-              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Core Web Vitals, SEO, and page speed — built in from the start, not bolted on at the end.
+            <div class="min-w-0 flex-1">
+              <h3 class="text-foreground text-base font-semibold">03. Web Applications</h3>
+              <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
+                Custom systems designed to handle real business logic. <br />Scalable, maintainable,
+                and built for long-term use.
               </p>
             </div>
           </div>
         </Card>
       </div>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <Button
+          variant="primary"
+          href="/contact"
+          class="mt-6 flex max-w-50 items-center justify-center"
+          >Let's get started <Icon name="arrow-right" size="lg" /></Button
+        >
+      </div>
     </div>
   </section>
 
- <!-- About Teaser -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
+  <!-- About Teaser -->
+  <section class="bg-background border-border relative z-10 border-t py-[var(--space-section-md)]">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2">
         <div class="flex flex-col justify-center" data-reveal="right">
-          <div class="flex flex-col gap-6 mb-6">
+          <div class="mb-6 flex flex-col gap-6">
             <Badge variant="brand" pill class="self-start">About me</Badge>
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Designer, developer,<br />
-              <span class="text-brand-500">and blogger.</span>
+            <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
+              Full-Stack Web<br />
+              <span class="text-brand-500">Developer</span>
             </h2>
           </div>
-          <p class="text-lg text-foreground-muted leading-relaxed mb-4">
-           Sixteen years of hands-on experience{siteConfig.address?.city ? `, based in ${siteConfig.address.city}${siteConfig.address.country ? `, ${siteConfig.address.country}` : ''}` : ''} and available for clients worldwide. I build with Astro because it aligns with how I think about the web: lean, purposeful, and built to last.
+          <p class="text-foreground-muted mb-4 text-lg leading-relaxed">
+            I'm Youness, a web developer dedicated to turning ideas into creative solutions. I
+            specialize in creating seamless and intuitive websites. I'm involved in every step of
+            the process — from discovery and design to <span class="font-bold"
+              >development, testing, and deployment</span
+            >. I focus on delivering high-quality, scalable results with clear communication and
+            reliable support. Available for clients worldwide.
           </p>
-          <p class="text-lg text-foreground-muted leading-relaxed mb-8">
-           On the blog, I share the ideas and decisions that shape my work.
+          <p class="text-foreground-muted mb-8 text-lg leading-relaxed">
+            Insights, process, and decisions behind my work.
           </p>
-           <Button variant="outline" href="/about" class="self-start">
-            More about me
-          </Button>
+          <Button variant="outline" href="/blog" class="self-start"> Read more </Button>
         </div>
-        <Card variant="elevated" padding="lg" class="h-full flex flex-col" data-reveal="left" data-reveal-delay="1">
-          <p class="text-sm text-foreground mb-5 text-center">A few things about me.</p>
-          <div class="grid grid-cols-2 gap-3 flex-1 auto-rows-fr">
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="history" class="w-10 h-10 text-brand-500" />
-              <p class="text-sm font-semibold text-foreground">16 Years Experience</p>
-            </div>
-            <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 h-full">
-              <svg class="w-10 h-10 text-brand-500" viewBox="0 0 1280 1280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M815.039 94.6439C824.758 106.709 829.714 122.99 839.626 155.553L1056.17 866.901C976.107 825.368 889.072 795.413 797.281 779.252L656.29 302.798C653.983 295.002 646.822 289.654 638.693 289.654C630.542 289.654 623.368 295.03 621.08 302.853L481.795 779.011C389.579 795.1 302.146 825.109 221.741 866.793L439.347 155.388L439.348 155.388C449.291 122.882 454.262 106.629 463.982 94.5853C472.562 83.9531 483.723 75.6958 496.4 70.6002C510.76 64.8284 527.756 64.8284 561.749 64.8284H717.174C751.212 64.8284 768.23 64.8284 782.603 70.6123C795.292 75.7184 806.459 83.9923 815.039 94.6439Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M840.951 900.754C805.253 931.279 734.002 952.097 651.929 952.097C551.197 952.097 466.767 920.737 444.363 878.561C436.354 902.732 434.558 930.396 434.558 948.068C434.558 948.068 429.281 1034.84 489.636 1095.2C489.636 1063.86 515.042 1038.46 546.381 1038.46C600.097 1038.46 600.036 1085.32 599.987 1123.34C599.986 1124.48 599.984 1125.61 599.984 1126.73C599.984 1184.44 635.255 1233.91 685.416 1254.77C677.924 1239.36 673.721 1222.05 673.721 1203.77C673.721 1148.73 706.034 1128.23 743.588 1104.41L743.588 1104.41C773.469 1085.46 806.668 1064.41 829.548 1022.17C841.486 1000.13 848.265 974.893 848.265 948.068C848.265 931.573 845.702 915.676 840.951 900.754Z" fill="currentColor"/>
-              </svg>
-              <p class="text-sm font-semibold text-foreground">Building with Astro</p>
-            </a>
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="globe" class="w-10 h-10 text-brand-500" />
-              <p class="text-sm font-semibold text-foreground">Working worldwide</p>
-            </div>
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
-              <Icon name="map-pin" class="w-10 h-10 text-brand-500" />
-              <p class="text-sm font-semibold text-foreground">Based in <br class="sm:hidden" />{siteConfig.address?.city ?? 'Your City'}{siteConfig.address?.country ? `, ${siteConfig.address.country}` : ''}</p>
-            </div>
-          </div>
+        <Card
+          variant="elevated"
+          padding="lg"
+          class="flex h-full flex-col"
+          data-reveal="left"
+          data-reveal-delay="1"
+        >
+          <img src="/about2.jpg" alt="About me" class="h-full w-full object-cover" />
         </Card>
       </div>
     </div>
   </section>
-<section>
-  <!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/youneselanbri12/we-re-here-to-answer-your-questions?hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
-</section>
-  <!-- Portfolio -->
-  <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>Selected work</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Projects I've built
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
-          A selection of recent work.
+
+  <!-- TECHNOLOGIES -->
+  <!-- ============================================================ -->
+  <!-- TECHNOLOGIES — filter-based design                           -->
+  <!-- ============================================================ -->
+  <section
+    class="tech-section bg-background-secondary border-border relative z-10 border-t py-[var(--space-section-md)]"
+  >
+    <div class="mx-auto max-w-6xl px-6">
+      <!-- Header -->
+      <div class="tech-header mb-10 flex flex-col items-center gap-4 text-center" data-reveal>
+        <Badge variant="brand" pill>Stack technique</Badge>
+        <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
+          Technologies & Expertise
+        </h2>
+        <p class="text-foreground-muted mx-auto max-w-2xl text-lg">
+          Tools I use in production — with real proficiency levels, not just logos
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2">
-        {featuredProjects.map((project) => (
-          <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="group flex flex-col" data-reveal>
-            <div class="flex flex-1 flex-col">
-              <div class="mb-3 flex items-start justify-between gap-4">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                  <Icon name="layers" size="sm" />
-                </div>
-                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
-              </div>
-              <div class="mb-2 flex items-baseline gap-2">
-                <h3 class="font-display text-lg font-bold text-foreground">{project.data.title}</h3>
-                {project.data.year && (
-                  <span class="text-xs text-foreground-muted">{project.data.year}</span>
+      <!-- Filter bar -->
+      <div
+        class="tech-filterbar mb-4 flex flex-wrap justify-center gap-1"
+        role="group"
+        aria-label="Filter by category"
+      >
+        {
+          allCategories.map((cat) => (
+            <button
+              class={`tech-filter-btn ${cat === 'All' ? 'active' : ''}`}
+              data-filter={cat}
+              aria-pressed={cat === 'All' ? 'true' : 'false'}
+            >
+              {cat !== 'All' && (
+                <span
+                  class="tech-filter-dot"
+                  style={`background: ${categoryMeta[cat as keyof typeof categoryMeta]?.color}`}
+                />
+              )}
+              {cat}
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Context line -->
+      <p
+        class="tech-ctx text-foreground-muted mb-8 text-center text-sm"
+        id="tech-ctx"
+        aria-live="polite"
+      >
+        All technologies — <strong class="text-foreground">{technologies.length} total</strong>
+      </p>
+
+      <!-- Grid -->
+      <div class="tech-grid" id="tech-grid" role="list">
+        {
+          technologies.map((tech, i) => {
+            const lc = levelConfig[tech.level as keyof typeof levelConfig];
+            const cm = categoryMeta[tech.category as keyof typeof categoryMeta];
+            return (
+              <article
+                class={`tech-card${tech.featured ? 'featured' : ''}`}
+                data-category={tech.category}
+                role="listitem"
+                style={`--card-accent: ${tech.color}; --cat-color: ${cm.color}; animation-delay: ${i * 40}ms`}
+              >
+                {tech.featured && (
+                  <span class="tech-featured-badge" style={`background: ${cm.color}`}>
+                    Main
+                  </span>
                 )}
+
+                <div class="tech-card-top">
+                  <div
+                    class="tech-icon"
+                    style={`background: ${tech.color}18; color: ${tech.color}`}
+                  >
+                    <Icon name={tech.devIcon} useDevIcon={true} class="h-5 w-5" />
+                  </div>
+                  <span class="tech-cat-tag" style={`background: ${cm.bg}; color: ${cm.text}`}>
+                    {tech.category}
+                  </span>
+                </div>
+
+                <h3 class="tech-card-title">{tech.title}</h3>
+                <p class="tech-card-desc">{tech.description}</p>
+
+                <div class="tech-card-footer">
+                  <div class="tech-level-row">
+                    <div class="tech-level-left">
+                      <span
+                        class="tech-level-badge"
+                        style={`background: ${lc.bg}; color: ${lc.text}`}
+                      >
+                        {tech.level}
+                      </span>
+                      <span class="tech-years">
+                        {tech.years} yr{tech.years > 1 ? 's' : ''}
+                      </span>
+                    </div>
+                    <span class="tech-level-pct" style={`color: ${lc.color}`}>
+                      {lc.pct}%
+                    </span>
+                  </div>
+                  <div class="tech-level-track">
+                    <div
+                      class="tech-level-fill"
+                      style={`width: ${lc.pct}%; background: ${lc.color}`}
+                      role="progressbar"
+                      aria-valuenow={lc.pct}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-label={`${tech.level} — ${lc.pct}%`}
+                    />
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+
+      <!-- Empty state -->
+      <p class="tech-empty text-foreground-muted hidden py-16 text-center text-sm" id="tech-empty">
+        No technologies in this category.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-background border-border relative z-10 border-t py-[var(--space-section-md)]">
+    <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+      <div class="flex flex-col items-center gap-6">
+        <Badge variant="brand" pill>Let's talk</Badge>
+        <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
+          Let's talk about your project
+        </h2>
+      </div>
+      <p class="text-foreground-muted text-lg">
+        Let's discuss your project and find the best solution for you.
+      </p>
+    </div>
+    <!-- Calendly link widget begin -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async
+    ></script>
+    <div class="flex flex-col justify-center gap-2 sm:flex-row">
+      <Button
+        variant="primary"
+        class="hover:bg-brand-500 mt-6 flex max-w-50 cursor-pointer items-center justify-center transition-all duration-300 hover:scale-105 hover:scale-150 hover:text-white"
+        onclick="if(window.Calendly){ Calendly.initPopupWidget({url: 'https://calendly.com/youneselanbri12/we-re-here-to-answer-your-questions'}); } return false;"
+      >
+        Get Started
+      </Button>
+    </div>
+    <!-- Calendly link widget end -->
+  </section>
+
+  <!-- Portfolio -->
+  <section
+    id="work"
+    class="bg-background-secondary border-border relative z-10 border-t py-[var(--space-section-md)]"
+  >
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Selected work</Badge>
+          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
+            Projects I've built
+          </h2>
+        </div>
+        <p class="text-foreground-muted mx-auto max-w-2xl text-lg">A selection of recent work.</p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          featuredProjects.map((project) => (
+            <Card
+              variant="elevated"
+              hover
+              padding="lg"
+              href={`/projects/${project.id.replace(/\.mdx?$/, '')}`}
+              class="group flex flex-col"
+              data-reveal
+            >
+              <div class="flex flex-1 flex-col">
+                <div class="mb-3 flex items-start justify-between gap-4">
+                  <div class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br">
+                    <Icon name="layers" size="sm" />
+                  </div>
+                  <Icon
+                    name="arrow-up-right"
+                    size="sm"
+                    class="text-foreground-muted group-hover:text-brand-500 shrink-0 transition-colors"
+                  />
+                </div>
+                <div class="mb-2 flex items-baseline gap-2">
+                  <h3 class="font-display text-foreground text-lg font-bold">
+                    {project.data.title}
+                  </h3>
+                  {project.data.year && (
+                    <span class="text-foreground-muted text-xs">{project.data.year}</span>
+                  )}
+                </div>
+                <p class="text-foreground-muted mb-4 flex-1 text-sm leading-relaxed">
+                  {project.data.description}
+                </p>
+                <div class="flex flex-wrap gap-1.5">
+                  {project.data.tags.map((tag) => (
+                    <Badge variant="brand">{tag}</Badge>
+                  ))}
+                </div>
               </div>
-              <p class="text-sm text-foreground-muted leading-relaxed mb-4 flex-1">{project.data.description}</p>
-              <div class="flex flex-wrap gap-1.5">
-                {project.data.tags.map((tag) => (
-                  <Badge variant="brand">{tag}</Badge>
-                ))}
-              </div>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- Testimonials -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+  <section class="bg-background border-border relative z-10 border-t py-[var(--space-section-md)]">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>Testimonials</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
             What clients say
           </h2>
         </div>
-        <p class="text-lg text-foreground-muted">
-          Replace these with your own client quotes.
-        </p>
+        <p class="text-foreground-muted text-lg">Replace these with your own client quotes.</p>
       </div>
 
       <div class="grid gap-6 md:grid-cols-2">
         <!-- Testimonial 1 -->
         <Card variant="elevated" padding="lg" hover data-reveal>
-          <div class="flex flex-col h-full gap-4">
-            <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
-              {[...Array(5)].map(() => (
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
+          <div class="flex h-full flex-col gap-4">
+            <div class="text-brand-500 flex gap-1" role="img" aria-label="5 out of 5 stars">
+              {
+                [...Array(5)].map(() => (
+                  <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))
+              }
             </div>
-            <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "The new site launched on time and hit every goal we set. Performance improved dramatically — load times dropped and the feedback from our customers has been overwhelmingly positive."
+            <blockquote class="text-foreground-muted flex-1 leading-relaxed">
+              "The new site launched on time and hit every goal we set. Performance improved
+              dramatically — load times dropped and the feedback from our customers has been
+              overwhelmingly positive."
             </blockquote>
-            <div class="flex items-center gap-3 pt-4 border-t border-border">
-              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
+            <div class="border-border flex items-center gap-3 border-t pt-4">
+              <div
+                class="from-brand-500/30 to-brand-500/10 text-brand-500 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-sm font-bold"
+              >
                 A
               </div>
               <div>
-                <p class="text-sm font-semibold text-foreground">Alex Morgan</p>
-                <p class="text-xs text-foreground-muted">Founder, Bright Studio</p>
+                <p class="text-foreground text-sm font-semibold">Alex Morgan</p>
+                <p class="text-foreground-muted text-xs">Founder, Bright Studio</p>
               </div>
             </div>
           </div>
@@ -261,24 +546,30 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
         <!-- Testimonial 2 -->
         <Card variant="elevated" padding="lg" hover data-reveal data-reveal-delay="1">
-          <div class="flex flex-col h-full gap-4">
-            <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
-              {[...Array(5)].map(() => (
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
+          <div class="flex h-full flex-col gap-4">
+            <div class="text-brand-500 flex gap-1" role="img" aria-label="5 out of 5 stars">
+              {
+                [...Array(5)].map(() => (
+                  <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))
+              }
             </div>
-            <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "Straightforward from first conversation to final handover. The right questions were asked, we were kept in the loop throughout, and the end result exceeded what we imagined. Would recommend without hesitation."
+            <blockquote class="text-foreground-muted flex-1 leading-relaxed">
+              "Straightforward from first conversation to final handover. The right questions were
+              asked, we were kept in the loop throughout, and the end result exceeded what we
+              imagined. Would recommend without hesitation."
             </blockquote>
-            <div class="flex items-center gap-3 pt-4 border-t border-border">
-              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
+            <div class="border-border flex items-center gap-3 border-t pt-4">
+              <div
+                class="from-brand-500/30 to-brand-500/10 text-brand-500 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-sm font-bold"
+              >
                 S
               </div>
               <div>
-                <p class="text-sm font-semibold text-foreground">Sarah Chen</p>
-                <p class="text-xs text-foreground-muted">CEO, Luma Agency</p>
+                <p class="text-foreground text-sm font-semibold">Sarah Chen</p>
+                <p class="text-foreground-muted text-xs">CEO, Luma Agency</p>
               </div>
             </div>
           </div>
@@ -288,34 +579,39 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
   <!-- Blog -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+  <section
+    class="bg-background-secondary border-border relative z-10 border-t py-[var(--space-section-md)]"
+  >
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
       <div class="flex items-end justify-between" data-reveal>
         <div class="flex flex-col gap-6">
           <Badge variant="brand" pill class="self-start">From the blog</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Featured
-          </h2>
+          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">Featured</h2>
         </div>
-        <a href="/blog" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors shrink-0">
+        <a
+          href="/blog"
+          class="text-brand-500 hover:text-brand-600 hidden shrink-0 items-center gap-1.5 text-sm font-medium transition-colors sm:inline-flex"
+        >
           View all posts
           <Icon name="arrow-right" size="sm" />
         </a>
       </div>
 
       <div class="grid gap-6 md:grid-cols-3">
-        {posts.map((post) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            href={`/blog/${post.id.replace('en/', '')}`}
-            publishedAt={post.data.publishedAt}
-            tags={post.data.tags}
-            author={post.data.author}
-            image={post.data.image}
-            svgSlug={post.data.svgSlug}
-          />
-        ))}
+        {
+          posts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              href={`/blog/${post.id.replace('en/', '')}`}
+              publishedAt={post.data.publishedAt}
+              tags={post.data.tags}
+              author={post.data.author}
+              image={post.data.image}
+              svgSlug={post.data.svgSlug}
+            />
+          ))
+        }
       </div>
 
       <div class="text-center sm:hidden">
@@ -327,57 +623,320 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
- <!-- CTA -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background">
+  <!-- CTA -->
+  <section class="bg-background relative z-10 py-[var(--space-section-md)]">
     <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+      <h2 class="font-display text-foreground mb-4 text-4xl font-bold text-balance">
         Have a project in mind?
       </h2>
-      <p class="text-lg text-foreground-muted mb-8 text-balance">
-        Whether it's a new build or something that needs a fresh perspective — I'd love to hear about it.
+      <p class="text-foreground-muted mb-8 text-lg text-balance">
+        Whether it's a new build or something that needs a fresh perspective — I'd love to hear
+        about it.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
         <Button size="lg" href="/contact">
           Start a project
           <Icon name="arrow-right" size="sm" />
         </Button>
-        <Button size="lg" variant="outline" href="/about">
-          More about me
-        </Button>
+        <Button size="lg" variant="outline" href="/about"> More about me </Button>
       </div>
     </div>
   </section>
+  <style>
+    .tech-stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: none;
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        transform 0.15s,
+        opacity 0.15s;
+    }
+    .tech-stat-pill:hover {
+      transform: translateY(-1px);
+    }
 
-<script>
-  function initCountup() {
-    const counters = document.querySelectorAll<HTMLElement>('[data-countup]:not([data-countup-init])');
-    if (counters.length === 0) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        observer.unobserve(entry.target);
-        const el = entry.target as HTMLElement;
-        const target = parseInt(el.dataset.countup ?? '0', 10);
-        const suffix = el.dataset.suffix ?? '';
-        const duration = 1200;
-        const start = performance.now();
-        const tick = (now: number) => {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(eased * target) + suffix;
-          if (progress < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
+    .tech-stat-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .tech-stat-count {
+      background: rgba(0, 0, 0, 0.07);
+      padding: 1px 6px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .tech-filterbar {
+      padding: 3px;
+      background: var(--color-background-tertiary, rgba(0, 0, 0, 0.04));
+      border-radius: 12px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tech-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 18px;
+      border-radius: 9px;
+      border: none;
+      background: transparent;
+      color: var(--color-foreground-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .tech-filter-btn:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--color-foreground);
+    }
+    .tech-filter-btn.active {
+      background: var(--color-background);
+      color: var(--color-foreground);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .tech-filter-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .tech-card {
+      position: relative;
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+      animation: techCardIn 0.35s ease both;
+    }
+    .tech-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+      border-color: var(--card-accent);
+    }
+    .tech-card.featured {
+      border-color: var(--cat-color);
+      border-width: 1.5px;
+    }
+    .tech-card.tech-hidden {
+      display: none !important;
+    }
+
+    @keyframes techCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tech-card {
+        animation: none;
+      }
+    }
+
+    .tech-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .tech-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tech-cat-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    .tech-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-foreground);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .tech-card-desc {
+      font-size: 0.78rem;
+      color: var(--color-foreground-muted);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      min-height: 2.5rem;
+    }
+
+    .tech-level-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .tech-level-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tech-level-badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .tech-years {
+      font-size: 0.7rem;
+      color: var(--color-foreground-muted);
+    }
+
+    .tech-level-pct {
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tech-level-track {
+      height: 3px;
+      background: var(--color-border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .tech-level-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tech-featured-badge {
+      position: absolute;
+      top: 11px;
+      right: 11px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 2px 7px;
+      border-radius: 20px;
+      color: white;
+    }
+  </style>
+  <script>
+    function initCountup() {
+      const counters = document.querySelectorAll<HTMLElement>(
+        '[data-countup]:not([data-countup-init])'
+      );
+      if (counters.length === 0) return;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            observer.unobserve(entry.target);
+            const el = entry.target as HTMLElement;
+            const target = parseInt(el.dataset.countup ?? '0', 10);
+            const suffix = el.dataset.suffix ?? '';
+            const duration = 1200;
+            const start = performance.now();
+            const tick = (now: number) => {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = Math.round(eased * target) + suffix;
+              if (progress < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          });
+        },
+        { threshold: 0.4 }
+      );
+      counters.forEach((el) => {
+        el.dataset.countupInit = 'true';
+        observer.observe(el);
       });
-    }, { threshold: 0.4 });
-    counters.forEach((el) => {
-      el.dataset.countupInit = 'true';
-      observer.observe(el);
+    }
+
+    initCountup();
+  </script>
+  <script>
+    const categoryDescriptions: Record<string, string> = {
+      All: 'All technologies',
+      Frontend: 'Interfaces & user experiences',
+      Backend: 'Databases & business logic',
+      DevOps: 'Infrastructure, CI/CD & deployments',
+    };
+
+    const cards = document.querySelectorAll<HTMLElement>('.tech-card');
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.tech-filter-btn');
+    const statPills = document.querySelectorAll<HTMLButtonElement>('.tech-stat-pill');
+    const ctxEl = document.getElementById('tech-ctx');
+    const emptyEl = document.getElementById('tech-empty');
+
+    function applyFilter(cat: string) {
+      let visible = 0;
+      cards.forEach((card) => {
+        const match = cat === 'All' || card.dataset.category === cat;
+        card.classList.toggle('tech-hidden', !match);
+        if (match) visible++;
+      });
+      filterBtns.forEach((btn) => {
+        const active = btn.dataset.filter === cat;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', String(active));
+      });
+      if (ctxEl) {
+        const desc = categoryDescriptions[cat] ?? cat;
+        ctxEl.innerHTML = `${desc} — <strong>${visible} technolog${visible > 1 ? 'ies' : 'y'}</strong>`;
+      }
+      if (emptyEl) emptyEl.classList.toggle('hidden', visible > 0);
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => applyFilter(btn.dataset.filter ?? 'All'));
     });
-  }
-
-  initCountup();
-</script>
-
+    statPills.forEach((pill) => {
+      pill.addEventListener('click', () => applyFilter(pill.dataset.filter ?? 'All'));
+    });
+  </script>
 </LandingLayout>
