@@ -1,0 +1,16 @@
+{
+  "name": "Developer-web",
+  "short_name": "Developer-web",
+  "description": "Busy building premium websites for businesses. We combine technical discipline with creative excellence. We don't just \"make websites\"—we engineer digital tools that solve business problems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

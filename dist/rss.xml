@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Developer-web</title>
+    <description>Busy building premium websites for businesses. We combine technical discipline with creative excellence. We don&apos;t just &quot;make websites&quot;—we engineer digital tools that solve business problems.</description>
+    <link>https://developer-web.com</link>
+    <atom:link href="https://developer-web.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 May 2026 13:35:58 GMT</lastBuildDate>
+    <item>
+      <title>Web Developer in Marrakech: How to Build a Website That Actually Ranks</title>
+      <link>https://developer-web.com/blog/core-web-vitals-morocco-guide/</link>
+      <guid>https://developer-web.com/blog/core-web-vitals-morocco-guide/</guid>
+      <description>A practical guide to professional web development in Marrakech — tech stack, SEO, performance and what to look for when hiring a local developer.</description>
+      <pubDate>Sun, 03 May 2026 00:00:00 GMT</pubDate>
+      <author>Youness</author>
+      <category>Web Development</category>
+        <category>Marrakech</category>
+        <category>Performance</category>
+        <category>Laravel</category>
+    </item>
+    <item>
+      <title>Practical Optimization Guide for Websites</title>
+      <link>https://developer-web.com/blog/performance-web-vitals-optimisation-avancee/</link>
+      <guid>https://developer-web.com/blog/performance-web-vitals-optimisation-avancee/</guid>
+      <description>How to measure and fix Core Web Vitals for websites in Morocco. Practical techniques for LCP, CLS and INP with real examples using laravel and Tailwind CSS.</description>
+      <pubDate>Sun, 03 May 2026 00:00:00 GMT</pubDate>
+      <author>Youness</author>
+      <category>Performance</category>
+        <category>Core Web Vitals</category>
+        <category>SEO</category>
+        <category>Web Development</category>
+    </item>
+  </channel>
+</rss>
