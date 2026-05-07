@@ -89,28 +89,40 @@ const technologies = [
 const categoryMeta = {
   Frontend: {
     color: '#FF2D20',
-    bg: 'rgba(124,58,237,0.08)',
-    text: '#6D28D9',
+    bg: 'rgba(124,58,237,0.15)',  // Augmenté de 0.08 → 0.15
+    text: '#7C3AED',               // Plus clair pour le nouveau fond
     desc: 'Interfaces & user experiences',
   },
   Backend: {
     color: '#059669',
-    bg: 'rgba(5,150,105,0.08)',
-    text: '#047857',
+    bg: 'rgba(5,150,105,0.15)',   // Augmenté de 0.08 → 0.15
+    text: '#10B981',               // Plus clair pour le nouveau fond
     desc: 'Databases & business logic',
   },
   DevOps: {
     color: '#2563EB',
-    bg: 'rgba(37,99,235,0.08)',
-    text: '#1D4ED8',
+    bg: 'rgba(37,99,235,0.15)',   // Augmenté de 0.08 → 0.15
+    text: '#3B82F6',               // Plus clair pour le nouveau fond
     desc: 'Infrastructure, CI/CD & deployments',
   },
 };
-const allCategories = ['All', 'Frontend', 'Backend', 'DevOps'];
+
 const levelConfig = {
-  Expert: { pct: 95, color: '#059669', bg: 'rgba(5,150,105,0.08)', text: '#065F46' },
-  Avancé: { pct: 78, color: '#2563EB', bg: 'rgba(37,99,235,0.08)', text: '#1E40AF' },
+  Expert: {
+    pct: 95,
+    color: '#059669',
+    bg: 'rgba(5,150,105,0.15)',   // Augmenté de 0.08 → 0.15
+    text: '#10B981'                // Plus clair pour le nouveau fond
+  },
+  Avancé: {
+    pct: 78,
+    color: '#2563EB',
+    bg: 'rgba(37,99,235,0.15)',   // Augmenté de 0.08 → 0.15
+    text: '#3B82F6'                // Plus clair pour le nouveau fond
+  },
 };
+const allCategories = ['All', 'Frontend', 'Backend', 'DevOps'];
+
 const projectItems = await getCollection('projects');
 const featuredProjects = projectItems.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
 
@@ -184,7 +196,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             >
               <Icon name="layout" size="lg" />
             </div>
-            <div class="min-w-65 flex-1">
+            <div class="min-w-0 flex-1">
               <h3 class="text-foreground text-base font-semibold">
                 01. Custom Website Development
               </h3>

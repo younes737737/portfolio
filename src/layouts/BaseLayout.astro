@@ -4,7 +4,7 @@ import outfitFont from '@fontsource-variable/outfit/files/outfit-latin-wght-norm
 import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
 import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
-// import Analytics from '@/components/layout/Analytics.astro';
+import Analytics from '@/components/layout/Analytics.astro';
 // import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
 import type { Thing, WithContext } from 'schema-dts';
@@ -93,7 +93,7 @@ schemas.push(...extraSchemas);
     <JsonLd schema={schemas} />
 
     <!-- Analytics désactivé pour la performance -->
-    <!-- <Analytics /> -->
+    <Analytics />
 
     <!-- Client-side view transitions are intentionally disabled. They composed
          poorly with the theme's CSS keyframe animations (hero slide-up,
