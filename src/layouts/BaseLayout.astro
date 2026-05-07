@@ -4,7 +4,7 @@ import outfitFont from '@fontsource-variable/outfit/files/outfit-latin-wght-norm
 import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
 import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
-import Analytics from '@/components/layout/Analytics.astro';
+// import Analytics from '@/components/layout/Analytics.astro';
 // import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
 import type { Thing, WithContext } from 'schema-dts';
@@ -93,14 +93,21 @@ schemas.push(...extraSchemas);
     <JsonLd schema={schemas} />
 
     <!-- Analytics désactivé pour la performance -->
-    <Analytics />
+    <!-- <Analytics /> -->
 
     <!-- Client-side view transitions are intentionally disabled. They composed
          poorly with the theme's CSS keyframe animations (hero slide-up,
          data-reveal fades) and produced a visible post-fade "aftershake" on
          mobile. Each navigation now does a normal page load, so animations
          run cleanly from frame 0 every time. -->
-
+      <!-- Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N80GX17PE" is:inline></script>
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8N80GX17PE');
+      </script>
 
     <!-- Dynamic favicon: syncs letter (first letter of site name) and color (brand-500) with active theme -->
     <script is:inline define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
