@@ -4,4 +4,4 @@ Allow: /
 # Block API routes
 Disallow: /api/
 
-Sitemap: https://developer-web.com/sitemap-index.xml
+Sitemap: https://portfolio.developer-web.com/sitemap-index.xml

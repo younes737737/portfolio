@@ -8,7 +8,7 @@ const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
 
 export default defineConfig({
   output: 'static',
-  site: process.env.SITE_URL || 'https:/developer-web.com',
+  site: process.env.SITE_URL || 'https:/portfolio.developer-web.com',
 
   devToolbar: {
     enabled: false,
